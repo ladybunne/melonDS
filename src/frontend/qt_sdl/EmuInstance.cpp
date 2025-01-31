@@ -753,7 +753,7 @@ bool EmuInstance::loadState(const std::string& filename)
         previousSaveFile = ndsSave->GetPath();
 
         std::string savefile = filename.substr(lastSep(filename)+1);
-        savefile = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".sav", savefile);
+        savefile = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".srm", savefile);
         savefile += instanceFileSuffix();
         ndsSave->SetPath(savefile, true);
     }
@@ -804,7 +804,7 @@ bool EmuInstance::saveState(const std::string& filename)
     if (globalCfg.GetBool("Savestate.RelocSRAM") && ndsSave)
     {
         std::string savefile = filename.substr(lastSep(filename)+1);
-        savefile = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".sav", savefile);
+        savefile = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".srm", savefile);
         savefile += instanceFileSuffix();
         ndsSave->SetPath(savefile, false);
     }
@@ -1406,7 +1406,7 @@ void EmuInstance::reset()
     if ((cartType != -1) && ndsSave)
     {
         std::string oldsave = ndsSave->GetPath();
-        std::string newsave = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".sav");
+        std::string newsave = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".srm");
         newsave += instanceFileSuffix();
         if (oldsave != newsave)
             ndsSave->SetPath(newsave, false);
@@ -1415,7 +1415,7 @@ void EmuInstance::reset()
     if ((gbaCartType != -1) && gbaSave)
     {
         std::string oldsave = gbaSave->GetPath();
-        std::string newsave = getAssetPath(true, localCfg.GetString("SaveFilePath"), ".sav");
+        std::string newsave = getAssetPath(true, localCfg.GetString("SaveFilePath"), ".srm");
         newsave += instanceFileSuffix();
         if (oldsave != newsave)
             gbaSave->SetPath(newsave, false);
@@ -1866,7 +1866,7 @@ bool EmuInstance::loadROM(QStringList filepath, bool reset, QString& errorstr)
     u32 savelen = 0;
     std::unique_ptr<u8[]> savedata = nullptr;
 
-    std::string savname = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".sav");
+    std::string savname = getAssetPath(false, localCfg.GetString("SaveFilePath"), ".srm");
     std::string origsav = savname;
     savname += instanceFileSuffix();
 
@@ -2025,7 +2025,7 @@ bool EmuInstance::loadGBAROM(QStringList filepath, QString& errorstr)
     u32 savelen = 0;
     std::unique_ptr<u8[]> savedata = nullptr;
 
-    std::string savname = getAssetPath(true, localCfg.GetString("SaveFilePath"), ".sav");
+    std::string savname = getAssetPath(true, localCfg.GetString("SaveFilePath"), ".srm");
     std::string origsav = savname;
     savname += instanceFileSuffix();
 
