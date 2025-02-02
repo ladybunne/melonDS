@@ -1614,7 +1614,7 @@ void MainWindow::onImportSavefile()
     QString path = QFileDialog::getOpenFileName(this,
                                             "Select savefile",
                                             globalCfg.GetQString("LastROMFolder"),
-                                            "Savefiles (*.sav *.bin *.dsv);;Any file (*.*)");
+                                            "Savefiles (*.sav *.bin *.dsv *.srm);;Any file (*.*)");
 
     if (path.isEmpty())
         return;
